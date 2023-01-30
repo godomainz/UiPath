@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1078,1444" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1078,1775" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="48">
+    <scg:List x:TypeArguments="x:String" Capacity="35">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -35,10 +35,11 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="64">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="49">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -89,7 +90,7 @@
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="496,1379" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="496,1710" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="CityName" />
     </Sequence.Variables>
@@ -104,13 +105,16 @@
       </ui:InputDialog.Result>
     </ui:InputDialog>
     <WriteLine DisplayName="Write City Name" sap:VirtualizedContainerService.HintSize="434,90" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[CityName]" />
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" ContinueOnError="True" DisplayName="Use Browser Edge: Google" sap:VirtualizedContainerService.HintSize="434,859" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" OpenMode="[NAppOpenMode.Always]" ScopeGuid="5908b2bc-e9a8-43fe-b569-984406dda28a" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" ContinueOnError="True" DisplayName="Use Browser Edge: Google" sap:VirtualizedContainerService.HintSize="434,1190" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" OpenMode="[NAppOpenMode.Always]" ScopeGuid="5908b2bc-e9a8-43fe-b569-984406dda28a" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,642" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,973" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="Temperature" />
+            </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -121,7 +125,7 @@
                 <uix:TargetAnchorable BrowserURL="https://www.google.com/" DesignTimeRectangle="701, 461, 443, 34" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' class='gLFyf' aaname='Search' /&gt;" Guid="44d539a6-8b7a-4ded-84f0-5643118d1514" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAb8AAAAmCAYAAABUDZVNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAChSURBVHhe7dUBAQAACMMg+5e+QQYluAFAjPwAyJEfADnyAyBHfgDkyA+AHPkBkCM/AHLkB0CO/ADIkR8AOfIDIEd+AOTID4Ac+QGQIz8AcuQHQI78AMiRHwA58gMgR34A5MgPgBz5AZAjPwBy5AdAjvwAyJEfADnyAyBHfgDkyA+AHPkBkCM/AHLkB0CO/ADIkR8AOfIDIEd+AOTID4CY7QEwhG4ReZZMZwAAAABJRU5ErkJggg==" InformativeScreenshot="1d70309226417c3014b9015926a2c162.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Google' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V1" Visibility="Interactive" />
               </uix:NTypeInto.Target>
             </uix:NTypeInto>
-            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Enter Shortcut to perform search" sap:VirtualizedContainerService.HintSize="334,179" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_3" InteractionMode="DebuggerApi" Shortcuts="[d(hk)][k(enter)][u(hk)]" Version="V3" />
+            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Enter Shortcut to perform search" sap:VirtualizedContainerService.HintSize="338,179" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_3" InteractionMode="DebuggerApi" Shortcuts="[d(hk)][k(enter)][u(hk)]" Version="V3" />
             <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="338,52" sap2010:WorkflowViewState.IdRef="CommentOut_2">
               <ui:CommentOut.Body>
                 <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,268" sap2010:WorkflowViewState.IdRef="Sequence_5">
@@ -144,6 +148,12 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:CommentOut>
+            <uix:NGetText DisplayName="Get Temperature" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="5908b2bc-e9a8-43fe-b569-984406dda28a" TextString="[Temperature]" Version="V3">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.google.com/search?q=weather+in+city+london+in+fahrenheit&amp;source=hp&amp;ei=2XTXY8CqHJiVseMP08mMoAQ&amp;iflsig=AK50M_UAAAAAY9eC6ffOGfoSqb00Yr-tdFKZv3AdTRC1&amp;ved=0ahUKEwiA--zV5e78AhWYSmwGHdMkA0QQ4dUDCAk&amp;uact=5&amp;oq=weather+in+city+london+in+fahrenheit&amp;gs_lcp=Cgdnd3Mtd2l6EAMyCAghEBYQHhAdUABYAGC0BWgAcAB4AIABygGIAcoBkgEDMi0xmAEAoAECoAEB&amp;sclient=gws-wiz" DesignTimeRectangle="308, 302, 56, 60" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'45'" FullSelectorArgument="&lt;webctrl id='wob_tm' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl id='wob_tm' tag='SPAN' type='' class='wob_t q8U8x' /&gt;" Guid="bd408013-91a7-4235-83c9-6fc13fbedc06" InformativeScreenshot="25e727d1d7ee3e4d4bbfb0cd0535eb48.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='weather in city london in fahrenheit - Google Search' /&gt;" SearchSteps="FuzzySelector" Version="V1" Visibility="Interactive" />
+              </uix:NGetText.Target>
+            </uix:NGetText>
+            <ui:LogMessage DisplayName="Log Temperature" sap:VirtualizedContainerService.HintSize="338,92" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Temperature is &quot;+Temperature]" />
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
