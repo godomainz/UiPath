@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1078,1133" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1078,1444" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="48">
       <x:String>System.Activities</x:String>
@@ -33,6 +33,8 @@
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>System.Security</x:String>
       <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -81,9 +83,13 @@
       <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="496,1068" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="496,1379" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="CityName" />
     </Sequence.Variables>
@@ -98,23 +104,46 @@
       </ui:InputDialog.Result>
     </ui:InputDialog>
     <WriteLine DisplayName="Write City Name" sap:VirtualizedContainerService.HintSize="434,90" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[CityName]" />
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Edge: Google" sap:VirtualizedContainerService.HintSize="434,548" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="[NAppOpenMode.Always]" ScopeGuid="5908b2bc-e9a8-43fe-b569-984406dda28a" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" ContinueOnError="True" DisplayName="Use Browser Edge: Google" sap:VirtualizedContainerService.HintSize="434,859" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" OpenMode="[NAppOpenMode.Always]" ScopeGuid="5908b2bc-e9a8-43fe-b569-984406dda28a" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,331" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,642" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'INPUT'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="338,218" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="5908b2bc-e9a8-43fe-b569-984406dda28a" Text="[&quot;Weather in &quot;+CityName+&quot; in Fahrenheit&quot;]" Version="V3">
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" ContinueOnError="False" DisplayName="Type Into Google Search Bar" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="338,218" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="Simulate" ScopeIdentifier="5908b2bc-e9a8-43fe-b569-984406dda28a" Text="[&quot;Weather in &quot;+CityName+&quot; in Fahrenheit&quot;]" Version="V3">
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="https://www.google.com/" DesignTimeRectangle="701, 461, 443, 34" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' class='gLFyf' aaname='Search' /&gt;" Guid="44d539a6-8b7a-4ded-84f0-5643118d1514" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAb8AAAAmCAYAAABUDZVNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAChSURBVHhe7dUBAQAACMMg+5e+QQYluAFAjPwAyJEfADnyAyBHfgDkyA+AHPkBkCM/AHLkB0CO/ADIkR8AOfIDIEd+AOTID4Ac+QGQIz8AcuQHQI78AMiRHwA58gMgR34A5MgPgBz5AZAjPwBy5AdAjvwAyJEfADnyAyBHfgDkyA+AHPkBkCM/AHLkB0CO/ADIkR8AOfIDIEd+AOTID4CY7QEwhG4ReZZMZwAAAABJRU5ErkJggg==" InformativeScreenshot="1d70309226417c3014b9015926a2c162.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Google' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V1" Visibility="Interactive" />
               </uix:NTypeInto.Target>
             </uix:NTypeInto>
+            <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Enter Shortcut to perform search" sap:VirtualizedContainerService.HintSize="334,179" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_3" InteractionMode="DebuggerApi" Shortcuts="[d(hk)][k(enter)][u(hk)]" Version="V3" />
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="338,52" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,268" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ClickType="Single" DisplayName="Click 'Google Search'" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="DebuggerApi" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="5908b2bc-e9a8-43fe-b569-984406dda28a" Version="V3">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="https://www.google.com/webhp?hl=en&amp;sa=X&amp;ved=0ahUKEwi14aaU0O78AhW3mGMGHS-QDYoQPAgI" DesignTimeRectangle="804, 530, 127, 36" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Google Search'" FullSelectorArgument="&lt;webctrl aria-role='button' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;center&amp;gt;input' tag='INPUT' type='submit' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='button' class='gNO89b' tag='INPUT' type='submit' aaname='Google Search' check:text='Google Search' /&gt;" Guid="7fefd3e3-ada8-4f08-9614-38ed77094471" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIMAAAAoCAYAAADdRklLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMuSURBVHhe7ZxdThsxFIW7lFbqaiKxE1CWMlJ2Ag+sBCTUHzWoQJM2Ut7atEri5lyPPdc/MwkJExRzLH0SM7bv+N5z7IGH4Z1hY6sbzcDmW2CG338W5vFpaj5/vTefvoxJoUBf6Ay9dfNmQAcGzWZz+Xnx9x8pFOgLnaG3NoSYYb1em4fHiQzITSZlAr2hO/T3ZlitVt4luUmkTNzbAPp7MyyXS3mX5CaQsoHu0J9mIDQDaaAZiIdmIB6agXhoBuKhGYiHZiCe/s1wMzKDDx/Ne835dX5sH8jzz0x1k+nbiTtTDV5x/RFX5/09v1cz3FZnm+LFQtTFHYzMrRrbGweZwa51UN0l9462/ojTNEOnCNfmIu67HKrdl86zxnL9Q3Ol+sLTZ2gqjHViJeuIdnqXqG05PDdmkBto1o+8BtVoUw/bd3Fp74vomfHWDEM/Xs85lN7MIOLt6mAplipudG2NEBawuYax1O51xsiaId3p3TvNxu7OY0vMOLcops1F99f3lKH0tTVJe20OoTczYNHh8dpGWkzQFNQWL3S/moNiRztR5ubMkBmbPaU0zlyeaOweMbVZYuHz+TbouUJySu3PEc0QHaUbbH8+eSkSkm5J1sX341RfUGA13+6icA2WHYspu7yeU8ffOWZsqjYzbBH3JM2QE6lBnwZHNkOwC/elWfPWmMoELkctaDK/RDN0L1Kb4civiWe8X9uFjp7fEVNiRGbtNEOJrwkgiWYWKgltEvYGkIKqcdG1jfNyv0AGxewU08aOxQzndMeMxbZrb8bH/dl7Kt7JmkFw4mii5AVJ2I1Jk/NFFCLxgmfUf1q6giXFqgVui5VQi63nJOvvihnN36zL5pI3i8NtGEuz/tM2wysgBdYFIztx+mZIjvnudy5pp4iTITxSaYR9KcIM5GWgGYiHZiAemoF4aAbioRmIJ28Gfnj75oDe0D0xw/j+gZ/kvzGgN3QPzIBPsn/+msmRgQE8IcoG+kJn6A3dg0/y8c8aFouFefoxMd/G32UQKRvoDL2he/DPOtCcIebzuZlOp2YymZBCgb7QWRsBzZsBDR04MvAOIWUDnbURjDHmP8te5tYu3GAkAAAAAElFTkSuQmCC" InformativeScreenshot="e6ef86b2aeea1fb8868f07ac5ac1286b.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Google' /&gt;" SearchSteps="FuzzySelector, Image" Version="V1" Visibility="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
